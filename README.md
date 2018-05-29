@@ -1,4 +1,4 @@
-# My-CRM
+# MyCRM
 My CRM is Customer Relationship Management Software developed using PHP and Codeigniter Framework.
 Customer relationship management (CRM) is an approach to manage a company's interaction with current and potential customers. It uses data analysis about customers' history with a company to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth.
 
