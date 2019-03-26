@@ -19,7 +19,7 @@ The code generally expects to be running under an Apache webserver with a
 mySQL database. It may be possible change these things if your system
 is different -- see the installation documentation:
 
-__Installation instructions:__ see `documentation/INSTALL.md`
+__Installation instructions:__ see `INSTALL.md`
 
 
 Quickstart
@@ -38,7 +38,7 @@ OK, try clicking on __Main site__ and logging in as the default out-of-the-box
 administrator:
 
   * username: `admin`
-  * password: `password`
+  * password: `123456`
 
 You must to change these values as soon as you're logged in! The root page 
 will tell you how (until you've done it).
@@ -48,8 +48,7 @@ Licensing
 ---------
 
 
-See `LICENSE.txt` but also check in `documentation/` for component-specific
-licenses.
+See `LICENSE.txt`.
 
 
 
