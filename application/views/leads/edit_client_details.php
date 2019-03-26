@@ -1,0 +1,145 @@
+<div class="container">
+	<h3 class="student">Make Sells Order</h3>
+	<p class="para">Note: (*) fields are mandatory</p>
+<form name="leadRegisterForm" class="form-horizontal" action="<?php echo base_url('Leads/edit_sell_order'); ?>"  onsubmit="return validateLeadRegisterForm()" method="POST">
+<div class="myjumbo">
+  
+  <div class="form-group">  
+      <label class="control-label col-sm-4 ">Name</label>
+      <div class="col-sm-2">
+         <input type="text" name="first_name" class="form-control" value="<?php if(!empty($mydata)) echo $mydata[0]->first_name;?>"  required> 
+      </div>
+	  <div class="col-sm-2">
+        <input type="text" name="middle_name" class="form-control" value="<?php if(!empty($mydata)) echo $mydata[0]->middle_name;?>"  >
+      </div>
+	  <div class="col-sm-2">
+        <input type="text" name="last_name" class="form-control" value="<?php if(!empty($mydata)) echo $mydata[0]->last_name;?>"  >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4 required"> contact number</label>
+      <div class="col-sm-6">          
+        <input type="text" name="mobile" class="form-control" value="<?php if(!empty($mydata)) echo $mydata[0]->mobile;?>"  readonly required>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-4 "> email address </label>
+      <div class="col-sm-6">          
+        <input type="email" name="email" class="form-control" value="<?php if(!empty($mydata)) echo $mydata[0]->email;?>" >
+      </div>
+    </div>
+     <div class="form-group">
+      <label class="control-label col-sm-4 ">Next Follow Up Date</label>
+      <div class="col-sm-6">          
+        <input type="date" name="follow_up_date" class="form-control" value="<?php if(!empty($mydata)) echo $mydata[0]->follow_up_date;?>" required >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4 ">Status</label>
+		<div class="col-sm-6">          
+			<select class="form-control branch" name="status">
+			<option <?php if(strcasecmp($mydata[0]->status,"no status")==0){ echo "selected" ;} ?> value="no status">No Status</option>
+			<option <?php if(strcasecmp($mydata[0]->status,"freetrial")==0){ echo "selected" ;} ?> value="freetrial">Free Trial</option>
+			<option <?php if(strcasecmp($mydata[0]->status,"pending")==0){ echo "selected" ; } ?> value="pending">Pending</option>
+			<option <?php if(strcasecmp($mydata[0]->status,"paid")==0){ echo "selected"; }  ?> value="paid">Paid</option>
+			<option <?php if(strcasecmp($mydata[0]->status,"rejected")==0) {echo "selected" ;} ?> value="rejected">Rejected</option>
+			<option <?php if(strcasecmp($mydata[0]->status,"interested")==0) {echo "selected" ;} ?> value="intrested">Interested</option>
+            <option <?php if(strcasecmp($mydata[0]->status,"npc")==0) {echo "selected" ;} ?> value="npc">NPC</option>
+		</select>
+      </div>
+      <br><br>
+      <div class="form-group" style="align:center;" id="services">
+			<label class="col-sm-3 ">Services</label>
+			
+			<br/><br/>
+			<?php $i=1;$j=0;foreach($services  as $r){ $j++; ?><div class="col-sm-3"><input type="radio"  id="services<?php echo $i;?>" name="services<?php echo $i;?>" data-contact_avl="val" value="1" ><?php echo $r->service_name;?></div>
+				<input type="hidden" name="ser_id<?php echo $i;?>" value="<?php echo $r->service_id;?>"/>
+				
+      
+      
+      <!--<label class="control-label col-sm-3 ">start Date of Service</label>
+      <div class="col-sm-3">          
+        <input type="date" name="start_date<?php echo $i; ?>" class="form-control" value="<?php echo $r->start_date;?>"  >
+      </div>
+   -->
+
+     <!-- <label class="control-label col-sm-4 ">End Date of Service </label>
+      <div class="col-sm-3">          
+        <input type="date" name="end_date<?php echo $i++; ?>" class="form-control" value="<?php echo $r->end_date;?>" >
+      
+    </div><br/><br/><br/>-->
+     <?php  } ?>
+			
+			
+			
+      
+		</div>
+      
+      </div>
+      
+    <div class="form-group">
+      <label class="control-label col-sm-4"> Services Amount:</label>
+      <div class="col-sm-6">          
+        <input type="text" name="service_amount" id="subpost" class="form-control" value="<?php echo $mydata[0]->service_amount;?>" required>
+      </div>
+    </div>
+   
+	  <div class="form-group">
+      <label class="control-label col-sm-4 required"> Discount</label>
+      <div class="col-sm-3">          
+        <input type="text" name="discount" class="form-control" placeholder="Discount" value="<?php  echo $mydata[0]->discount;?>"   required>
+      </div>
+    </div>
+    
+     <div class="form-group">
+      <label class="control-label col-sm-4 required"> Net Amount</label>
+      <div class="col-sm-3">          
+        <input type="text" name="total_amount" class="form-control"  value="<?php  echo $mydata[0]->total_amount;?>"   required>
+      </div>
+    </div>
+    
+		 <div class="form-group">
+		
+      <label class="control-label col-sm-4 required">Payment Mode</label>
+      <div class="col-sm-3">          
+        <select type="date" name="mode" class="form-control">
+		     <option value="">-- Select --</option>
+		     <option <?php if(strcasecmp($mydata[0]->payment_mode,"cash")==0){ echo "selected" ;} ?> value="cash">Cash</option>
+		     <option <?php if(strcasecmp($mydata[0]->payment_mode,"debitcard")==0){ echo "selected" ;} ?> value="debitcard">Debit Card</option>
+		     <option <?php if(strcasecmp($mydata[0]->payment_mode,"creditcard")==0){ echo "selected" ;} ?> value="creditcard">Credit Card</option>
+		     <option <?php if(strcasecmp($mydata[0]->payment_mode,"netbanking")==0){ echo "selected" ;} ?> value="netbanking">Net Banking</option>
+		     <option <?php if(strcasecmp($mydata[0]->payment_mode,"wallet")==0){ echo "selected" ;} ?> value="wallet">Wallets</option>		     
+		</select>	
+      </div>
+    </div>
+<div class="form-group">
+      <label class="control-label col-sm-4 required">Payment Date</label>
+      <div class="col-sm-3">          
+        <input type="date" name="date" class="form-control" value="<?php echo $mydata[0]->date; ?>"    required>
+      </div>
+    </div>
+<div class="form-group">
+      <label class="control-label col-sm-4 required">Start Date</label>
+      <div class="col-sm-3">          
+        <input type="date" name="start_date" class="form-control" value="<?php echo $mydata[0]->start_date; ?>"  required>
+      </div>
+    </div>
+<div class="form-group">
+      <label class="control-label col-sm-4 required">End Date</label>
+      <div class="col-sm-3">          
+        <input type="date" name="end_date" class="form-control" value="<?php echo $mydata[0]->end_date; ?>" required>
+      </div>
+    </div>
+
+    <input type="hidden" value="<?php echo $mydata[0]->client_id;?>" name="client_id">  
+    <input type="hidden" value="<?php echo $mydata[0]->id;?>" name="id">  
+    <input type="hidden" value="<?php echo $i; ?>" name="nums">  
+                      <div class="form-group">        
+					<div class="col-sm-offset-8 col-sm-2">
+						<button type="submit" class="btn btn-success">Save</button>
+					</div>
+				  </div> 
+</div>
+</form>
+</div>
